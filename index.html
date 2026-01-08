@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="game">
+        <!-- PROGRESS BAR -->
+        <div class="progress-bar">
+            <div class="progress-main"></div>
+            <div class="progress-shadow"></div>
+        </div>
+
+        <!-- SINGLE DISPLAY -->
+        <div class="display">
+            <div class="target-big" id="targetBox"></div>
+        </div>
+
+        <!-- KEYPAD -->
+        <div class="pad">
+            <button class="key">1</button>
+            <button class="key">2</button>
+            <button class="key">3</button>
+            <button class="key">4</button>
+            <button class="key">5</button>
+            <button class="key">6</button>
+            <button class="key">7</button>
+            <button class="key">8</button>
+            <button class="key">9</button>
+            <button class="key action">C</button>
+            <button class="key">0</button>
+            <button class="key action">DEL</button>
+        </div>
+    </div>
+    <script>
+        const wrongSnd = "sounds/wrong.mp3";
+        const correctSnd = "sounds/correct.mp3";
+        const clicksSnd = ["sounds/click1.mp3", "sounds/click2.mp3", "sounds/click3.mp3"];
+
+        function playSound(src) { new Audio(src).play() }
+        function playClick() { playSound(clicksSnd[Math.floor(Math.random() * clicksSnd.length)]) }
+    </script>
+
+    <script src="script.js"></script>
+
+
+    <script>
+        document.addEventListener("keydown", e => {
+            if (locked) return;
+            const key = e.key;
+
+            if (key >= "0" && key <= "9" && current.length < DIGITS) {
+                current += key;
+                fastCheck();
+                playClick();
+            }
+            else if (key === "Backspace") {
+                current = current.slice(0, -1);
+            }
+            else if (key.toLowerCase() === "c") {
+                current = "";
+            }
+
+            updateUI();
+        });
+    </script>
+
+</body>
+
+</html>
