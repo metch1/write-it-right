@@ -1,4 +1,4 @@
-const DIGITS=3,TIME_LIMIT=20;
+const DIGITS=3,TIME_LIMIT=40;
 let target=genNum(),current="",locked=false,totalTyped=0;
 const box=document.querySelector(".target-big"),
       progress=document.querySelector(".progress-main"),
